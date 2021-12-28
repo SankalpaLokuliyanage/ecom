@@ -13,11 +13,23 @@ final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 String p = r'^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$';
 
 RegExp regExp = new RegExp(p);
+bool obserText = true;
 
 class _SignUpState extends State<SignUp> {
+
+  void validation() {
+    final FormState? _form = _formKey.currentState;
+    if(_form!.validate()){
+      print("yes"); 
+    } else {
+      print("no");
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       body: SafeArea(
         child: Form(
           key: _formKey,
@@ -89,6 +101,7 @@ class _SignUpState extends State<SignUp> {
                       ),
               
                       TextFormField(
+                        obscureText: obserText,
                         validator: (value) {
                           if(value == "") {
                             return "Please fill password";
@@ -100,9 +113,14 @@ class _SignUpState extends State<SignUp> {
                           hintText: "PASSWORD",
                           suffixIcon: GestureDetector(
                             onTap: () {
+                              setState(() {
+                                obserText = !obserText;
+                              });
                               FocusScope.of(context).unfocus();
                             },
-                            child: Icon(Icons.visibility, color: Colors.black,),
+                            child: Icon(
+                              obserText==true ?
+                              Icons.visibility:Icons.visibility_off, color: Colors.black,),
                           ),
                           hintStyle: TextStyle(
                             color: Colors.black
@@ -112,6 +130,13 @@ class _SignUpState extends State<SignUp> {
                       ),
               
                       TextFormField(
+                        validator: (value) {
+                          if(value == "") {
+                            return "Please Enter your mobile number";
+                          } else if (value!.length < 10){
+                            return "Number is Invalid";
+                          } return "";
+                        },
                         decoration: InputDecoration(
                           hintText: "PHONE NUMBER",
                           
@@ -128,7 +153,9 @@ class _SignUpState extends State<SignUp> {
                         child: RaisedButton(
                           child: Text("Register"),
                           color: Colors.blueGrey[400],
-                          onPressed: () {}),
+                          onPressed: () {
+                            validation();
+                          }),
                       ),
                       Row(
                         children: [
