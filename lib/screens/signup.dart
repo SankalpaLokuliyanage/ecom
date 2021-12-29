@@ -1,3 +1,4 @@
+import 'package:ecommerce/screens/login.dart';
 import 'package:flutter/material.dart';
 
 class SignUp extends StatefulWidget {
@@ -161,7 +162,11 @@ class _SignUpState extends State<SignUp> {
                         children: [
                           Text("I Have Already An Account!"),
                           SizedBox(width: 10,),
-                          GestureDetector(child: Text("LOGIN",
+                          GestureDetector(
+                            onTap: () {
+                                Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (ctx)=>Login()));
+                              },
+                            child: Text("LOGIN",
                           style: TextStyle(color: Colors.cyan,
                           fontSize: 20, fontWeight: FontWeight.bold),),),
                         ]
