@@ -45,7 +45,15 @@ class Login extends StatelessWidget {
                     color: Colors.grey,
                     onPressed: () {}),
                 ),
-
+                Row(
+                        children: [
+                          Text("I don't have An Account!"),
+                          SizedBox(width: 10,),
+                          GestureDetector(child: Text("REGISTER",
+                          style: TextStyle(color: Colors.cyan,
+                          fontSize: 20, fontWeight: FontWeight.bold),),),
+                        ]
+                      ),
                 ],
               ),
             )
