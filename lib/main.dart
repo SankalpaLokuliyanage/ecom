@@ -1,3 +1,4 @@
+import 'package:ecommerce/screens/login.dart';
 import 'package:ecommerce/screens/signup.dart';
 import 'package:flutter/material.dart';
 
@@ -15,7 +16,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
       ),
-      home: SignUp(),
+      home: Login(),
     );
   }
 }
