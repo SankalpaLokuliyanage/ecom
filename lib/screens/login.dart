@@ -87,14 +87,7 @@ class _LoginState extends State<Login> {
                       ),
                     ),
                   Container(
-                    height: 45,
-                    width: double.infinity,
-                    child: RaisedButton(
-                      child: Text("Login"),
-                      color: Colors.grey,
-                      onPressed: () {
-                        validation();
-                      }),
+                    ///button
                   ),
                   Row(
                           children: [
